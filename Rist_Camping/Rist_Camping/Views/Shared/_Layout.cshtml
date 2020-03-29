@@ -1,44 +1,43 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Meine ASP.NET-Anwendung</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+    <header>
+        <!--- Kopfzeile --->
+        <div class="logo">
+            <img src="/images/logo.png" />
+        </div>
+    </header>
 
-    <body>
-        <header>
-            <!--- Kopfzeile --->
-            <div class="logo">
-                <img src="~/images/logo.jpg" />
-            </div>
-        </header>
+    <main>
+        <nav>
+            <!-- Navigation-->
+            @Html.Partial("Navigation")
+        </nav>
 
-        <main>
-            <nav>
-                <!-- Navigation-->
-                @Html.Partial("Navigation")
-            </nav>
-
-            <content>
-                <!-- Inhalt -->
-                @RenderBody()
-            </content>
-        </main>
+        <content>
+            <!-- Inhalt -->
+            @RenderBody()
+        </content>
+    </main>
         
-        <footer>
-            <!--- Fußzeile --->
-        </footer>
-    </body>
+    <footer>
+        <!--- Fußzeile --->
+        © Campingplatz 2020
+    </footer>
 
 
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
