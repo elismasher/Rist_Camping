@@ -13,29 +13,29 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <header>
-        <!--- Kopfzeile --->
-        <div class="logo">
-            <img src="/images/logo.png" />
-        </div>
-    </header>
+    <div class="grid">
+        <header class="header">
+            <!--- Kopfzeile --->
+            <div class="logo">
+                <img src="/images/logo.png" />
+            </div>
+        </header>
 
-    <main>
-        <nav>
+        <nav class="nav">
             <!-- Navigation-->
             @Html.Partial("Navigation")
         </nav>
 
-        <content>
+        <main class="main">
             <!-- Inhalt -->
             @RenderBody()
-        </content>
-    </main>
-        
-    <footer>
-        <!--- Fußzeile --->
-        © Campingplatz 2020
-    </footer>
+        </main>
+
+        <footer class="footer">
+            <!--- Fußzeile --->
+            © Campingplatz 2020
+        </footer>
+    </div>
 
 
     @RenderSection("scripts", required: false)
