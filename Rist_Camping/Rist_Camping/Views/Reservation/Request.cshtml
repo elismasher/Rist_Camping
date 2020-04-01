@@ -1,6 +1,108 @@
-﻿@{
+﻿@model Rist_Camping.Models.Reservation
+
+@{
     ViewBag.Title = "Anfrage";
 }
 
-<h1>Anfrage</h1>
+    <div class="container request">
+        <h1>Anfrage</h1>
+        <br />
+
+        <form action="/reservation/request" method="post">
+
+            <fieldset class="uk-fieldset">
+                <div class="uk-grid-column-small uk-grid-row-large uk-child-width-1-2@m uk-text-left" uk-grid>
+                    <div class="uk-margin" style="padding-top: 20px;">
+                        <label class="uk-form-label" for="Firstname">Vorname:</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" id="Firstname" name="Firstname" type="text" placeholder="Vorname eingeben ...">
+                        </div>
+                    </div>
+
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="Lastname">Nachname:</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" id="Lastname" name="Lastname" type="text" required placeholder="Nachname eingeben ...">
+                        </div>
+                        <span class="errorForm">
+                            @Html.ValidationMessageFor(u => u.Lastname)
+                        </span>
+                    </div>
+
+                    <div class="uk-width-1-1@m uk-margin">
+                        <label class="uk-form-label" for="EMail">E-Mail:</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" id="EMail" name="EMail" type="email" required placeholder="E-Mail eingeben ...">
+                        </div>
+                        <span class="errorForm">
+                            @Html.ValidationMessageFor(u => u.EMail)
+                        </span>
+                    </div>
+
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="ArrivalDate">Anreisedatum:</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" id="ArrivalDate" name="ArrivalDate" type="date" required placeholder="Anreisedatum eingeben ...">
+                        </div>
+                        <span class="errorForm">
+                            @Html.ValidationMessageFor(u => u.ArrivalDate)
+                        </span>
+                    </div>
+
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="DepartureDate">Abreisedatum:</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" id="DepartureDate" name="DepartureDate" type="date" required placeholder="Abreisedatum eingeben ...">
+                        </div>
+                        <span class="errorForm">
+                            @Html.ValidationMessageFor(u => u.DepartureDate)
+                        </span>
+                    </div>
+
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="NumberOfAdults">Anzahl Erwachsene:</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" id="NumberOfAdults" name="NumberOfAdults" type="number" required placeholder="Anzahl Erwachsene eingeben ...">
+                        </div>
+                        <span class="errorForm">
+                            @Html.ValidationMessageFor(u => u.NumberOfAdults)
+                        </span>
+                    </div>
+
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="NumberOfChildren">Anzahl Kinder:</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" id="NumberOfChildren" name="NumberOfChildren" type="number" required placeholder="Anzahl Kinder eingeben ...">
+                        </div>
+                        <span class="errorForm">
+                            @Html.ValidationMessageFor(u => u.NumberOfChildren)
+                        </span>
+                    </div>
+
+                    <div class="uk-width-1-1@m uk-margin">
+                        <label class="uk-form-label" for="TypeOfPlace">Schlafplatz wählen:</label>
+                        <div class="uk-form-controls uk-form-controls-text">
+                            <label class="labelTypeOfPlace"><input id="TypeOfPlace" name="TypeOfPlace" class="uk-radio" value="0" type="radio"> Stehplatz</label><br />
+                            <label class="labelTypeOfPlace"><input id="TypeOfPlace" name="TypeOfPlace" class="uk-radio" value="1" type="radio"> Hütte</label><br />
+                            <label class="labelTypeOfPlace"><input id="TypeOfPlace" name="TypeOfPlace" class="uk-radio" value="2" type="radio"> Schlaf-Fass</label>
+                        </div>
+                        <span class="errorForm">
+                            @Html.ValidationMessageFor(u => u.TypeOfPlace)
+                        </span>
+                    </div>
+
+
+
+
+                    <div class="uk-width-1-1@m uk-margin" style="text-align: center;">
+                        <input type="submit" value="absenden" id="btnSubmit" />
+                        <input type="reset" value="abbrechen" id="btnReset" />
+                    </div>                    
+                </div>
+            </fieldset>
+
+        </form>
+    </div>
+
+
 

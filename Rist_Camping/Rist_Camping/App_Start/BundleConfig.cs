@@ -20,7 +20,11 @@ namespace Rist_Camping
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/site.css"));
+                      ("~/Content/UiKit/uikit.min.css"),
+                      ("~/Content/site.css")));
+            bundles.Add(new StyleBundle("~/bundles/uikit").Include(
+                      ("~/Scripts/UiKit/uikit.min.js"),
+                      ("~/Scripts/UiKit/uikit-icons.min.js")));
         }
     }
 }
