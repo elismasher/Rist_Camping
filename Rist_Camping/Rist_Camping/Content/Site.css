@@ -140,16 +140,16 @@ article {
     color: red;
     font-size: 0.7em;
 }
-.request label {
+.forms label {
     font-size: 1em;
 }
-.labelTypeOfPlace {
+.labelRadio {
     font-weight: 100;
 }
 
-.labelTypeOfPlace input{
-    background-color: white;
-}
+    .labelRadio input {
+        background-color: white;
+    }
 
 
 /* Fußzeile */

@@ -1,0 +1,37 @@
+﻿@model Rist_Camping.Models.UserLogin
+
+@{
+    ViewBag.Title = "Login";
+}
+    <div class="container forms">
+        <h1>Login</h1>
+        <br />
+
+        <form action="/Admin/Login" method="post">
+            <fieldset class="uk-fieldset">
+                <div class="uk-grid-column-small uk-grid-row-large uk-child-width-1-2@m uk-text-left" uk-grid>
+                    <div class="uk-width-1-1@m uk-margin">
+                        <label class="uk-form-label" for="Username">Username:</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" id="Username" name="Username" type="text" required placeholder="Username eingeben ...">
+                        </div>
+                    </div>
+
+                    <div class="uk-width-1-1@m uk-margin">
+                        <label class="uk-form-label" for="Password">Passwort:</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" id="Password" name="Password" type="password" required placeholder="Passwort eingeben ...">
+                        </div>
+                        <span class="errorForm">
+                            @Html.ValidationMessageFor(u => u.Username)
+                        </span>
+                    </div>
+
+                    <div class="uk-width-1-1@m uk-margin" style="text-align: center;">
+                        <input class="uk-button uk-button-primary" type="submit" value="Login" id="btnSubmit" />
+                        <input class="uk-button uk-button-default" type="reset" value="Abbrechen" id="btnReset" />
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>

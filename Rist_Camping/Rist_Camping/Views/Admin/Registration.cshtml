@@ -1,0 +1,92 @@
+﻿@model Rist_Camping.Models.User
+
+@{
+    ViewBag.Title = "Registrierung ";
+}
+
+    <div class="container forms">
+        <h1>Registrierung</h1>
+        <br />
+
+        <form action="/Admin/Registration" method="post">
+            <fieldset class="uk-fieldset">
+                <div class="uk-grid-column-small uk-grid-row-large uk-child-width-1-2@m uk-text-left" uk-grid>
+                    <div class="uk-margin" style="padding-top: 20px;">
+                        <label class="uk-form-label" for="Firstname">Vorname:</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" id="Firstname" name="Firstname" type="text" required placeholder="Vorname eingeben ...">
+                        </div>
+                        <span class="errorForm">
+                            @Html.ValidationMessageFor(u => u.Firstname)
+                        </span>
+                    </div>
+
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="Lastname">Nachname:</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" id="Lastname" name="Lastname" type="text" required placeholder="Nachname eingeben ...">
+                        </div>
+                        <span class="errorForm">
+                            @Html.ValidationMessageFor(u => u.Lastname)
+                        </span>
+                    </div>
+
+                    <div class="uk-width-1-1@m uk-margin">
+                        <label class="uk-form-label" for="Gender">Geschlecht wählen:</label>
+                        <div class="uk-form-controls uk-form-controls-text">
+                            <label class="labelRadio"><input id="Gender" name="Gender" class="uk-radio" value="0" type="radio"> Männlich</label><br />
+                            <label class="labelRadio"><input id="Gender" name="Gender" class="uk-radio" value="1" type="radio"> Weiblich</label>
+                        </div>
+                        <span class="errorForm">
+                            @Html.ValidationMessageFor(u => u.Gender)
+                        </span>
+                    </div>
+
+                    <div class="uk-width-1-1@m uk-margin">
+                        <label class="uk-form-label" for="Email">E-Mail:</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" id="Email" name="Email" type="email" required placeholder="E-Mail eingeben ...">
+                        </div>
+                        <span class="errorForm">
+                            @Html.ValidationMessageFor(u => u.Email)
+                        </span>
+                    </div>
+
+                    <div class="uk-width-1-1@m uk-margin">
+                        <label class="uk-form-label" for="Username">Benutzername:</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" id="Username" name="Username" type="text" required placeholder="Benutzername eingeben ...">
+                        </div>
+                        <span class="errorForm">
+                            @Html.ValidationMessageFor(u => u.Username)
+                        </span>
+                    </div>
+
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="Password">Passwort:</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" id="Password" name="Password" type="password" required minlength="8" placeholder="Passwort eingeben ...">
+                        </div>
+                        <span class="errorForm">
+                            @Html.ValidationMessageFor(u => u.Password)
+                        </span>
+                    </div>
+
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="PasswordConfirm">Passwort bestätigen:</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" id="PasswordConfirm" name="PasswordConfirm" type="password" required placeholder="Passwort eingeben ...">
+                        </div>
+                        <span class="errorForm">
+                            @Html.ValidationMessageFor(u => u.PasswordConfirm)
+                        </span>
+                    </div>
+
+                    <div class="uk-width-1-1@m uk-margin" style="text-align: center;">
+                        <input class="uk-button uk-button-primary" type="submit" value="Login" id="btnSubmit" />
+                        <input class="uk-button uk-button-default" type="reset" value="Abbrechen" id="btnReset" />
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>

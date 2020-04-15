@@ -140,6 +140,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CampingplaceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
@@ -147,9 +148,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\db\IRepositoryReservation.cs" />
+    <Compile Include="Models\db\IRepositoryUser.cs" />
     <Compile Include="Models\db\RepositoryReservation.cs" />
+    <Compile Include="Models\db\RepositoryUser.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Reservation.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -210,6 +215,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Impressum.cshtml" />
     <Content Include="Views\Shared\Message.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Admin\Registration.cshtml" />
+    <Content Include="Views\Admin\Admin.cshtml" />
+    <Content Include="Views\Admin\ReservationRequests.cshtml" />
+    <Content Include="Views\Admin\RegisteredUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

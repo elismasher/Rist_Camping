@@ -4,7 +4,7 @@
     ViewBag.Title = "Anfrage";
 }
 
-    <div class="container request">
+    <div class="container forms">
         <h1>Anfrage</h1>
         <br />
 
@@ -82,9 +82,9 @@
                     <div class="uk-width-1-1@m uk-margin">
                         <label class="uk-form-label" for="TypeOfPlace">Schlafplatz wählen:</label>
                         <div class="uk-form-controls uk-form-controls-text">
-                            <label class="labelTypeOfPlace"><input id="TypeOfPlace" name="TypeOfPlace" class="uk-radio" value="0" type="radio"> Stehplatz</label><br />
-                            <label class="labelTypeOfPlace"><input id="TypeOfPlace" name="TypeOfPlace" class="uk-radio" value="1" type="radio"> Hütte</label><br />
-                            <label class="labelTypeOfPlace"><input id="TypeOfPlace" name="TypeOfPlace" class="uk-radio" value="2" type="radio"> Schlaf-Fass</label>
+                            <label class="labelRadio"><input id="TypeOfPlace" name="TypeOfPlace" class="uk-radio" value="0" type="radio"> Stehplatz</label><br />
+                            <label class="labelRadio"><input id="TypeOfPlace" name="TypeOfPlace" class="uk-radio" value="1" type="radio"> Hütte</label><br />
+                            <label class="labelRadio"><input id="TypeOfPlace" name="TypeOfPlace" class="uk-radio" value="2" type="radio"> Schlaf-Fass</label>
                         </div>
                         <span class="errorForm">
                             @Html.ValidationMessageFor(u => u.TypeOfPlace)
@@ -95,8 +95,8 @@
 
 
                     <div class="uk-width-1-1@m uk-margin" style="text-align: center;">
-                        <input type="submit" value="absenden" id="btnSubmit" />
-                        <input type="reset" value="abbrechen" id="btnReset" />
+                        <input class="uk-button uk-button-primary" type="submit" value="absenden" id="btnSubmit" />
+                        <input class="uk-button uk-button-default" type="reset" value="abbrechen" id="btnReset" />
                     </div>                    
                 </div>
             </fieldset>
