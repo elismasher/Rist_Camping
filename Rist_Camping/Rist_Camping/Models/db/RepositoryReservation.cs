@@ -8,31 +8,8 @@ using System.Web;
 
 namespace Rist_Camping.Models.db
 {
-    public class RepositoryReservation : IRepositoryReservation
+    public class RepositoryReservation : RepositoryBase, IRepositoryReservation
     {
-        private string _connectionString = "Server=localhost; Database=db_Rist_Camping; Uid=root; Pwd=Klexi2408;";
-        private MySqlConnection _connection;
-
-
-        public void Open()
-        {
-            if (this._connection == null)
-            {
-                this._connection = new MySqlConnection(this._connectionString);
-            }
-            if (this._connection.State != ConnectionState.Open)
-            {
-                this._connection.Open();
-            }
-        }
-        public void Close()
-        {
-            if ((this._connection != null) && (this._connection.State != ConnectionState.Closed))
-            {
-                this._connection.Close();
-            }
-        }
-
         public bool Insert(Reservation newReservation)
         {
             if (newReservation == null)

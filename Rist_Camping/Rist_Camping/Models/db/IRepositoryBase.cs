@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Rist_Camping.Models.db
 {
-    interface IRepositoryReservation : IRepositoryBase
+    interface IRepositoryBase
     {
-        bool Insert(Reservation newReservation);
+        void Open();
+        void Close();
     }
 }

@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Rist_Camping.Models.db
 {
-    interface IRepositoryUser
+    interface IRepositoryUser : IRepositoryBase
     {
-        void Open();
-        void Close();
-
         bool Insert(User user);
         bool Delete(int id);
         bool UpdateUserData(int id, User newUserData);

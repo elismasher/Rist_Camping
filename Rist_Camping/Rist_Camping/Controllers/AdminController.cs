@@ -11,7 +11,7 @@ namespace Rist_Camping.Controllers
 {
     public class AdminController : Controller
     {
-        private RepositoryUser rep;
+        private IRepositoryUser rep;
 
         public ActionResult Login()
         {
@@ -48,7 +48,7 @@ namespace Rist_Camping.Controllers
         {
             if (user == null)
             {
-                return RedirectToAction("Registration");
+                return View(user);
             }
 
             CheckUserData(user);
@@ -72,7 +72,7 @@ namespace Rist_Camping.Controllers
                 else
                 {
                     rep.Close();
-                    return RedirectToAction("Registration");
+                    return View(user);
                 }
             }
         }

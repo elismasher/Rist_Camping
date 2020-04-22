@@ -147,8 +147,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\db\IRepositoryBase.cs" />
     <Compile Include="Models\db\IRepositoryReservation.cs" />
     <Compile Include="Models\db\IRepositoryUser.cs" />
+    <Compile Include="Models\db\RepositoryBase.cs" />
     <Compile Include="Models\db\RepositoryReservation.cs" />
     <Compile Include="Models\db\RepositoryUser.cs" />
     <Compile Include="Models\Message.cs" />
