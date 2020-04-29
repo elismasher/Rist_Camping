@@ -1,5 +1,63 @@
-﻿@{
+﻿@model List<Rist_Camping.Models.Reservation>
+
+@{
     ViewBag.Title = "Reservierungsanfragen ";
 }
 
 <h1>Reservierungsanfragen </h1>
+
+@if (Model != null)
+{
+<table class="uk-table reservierungsanfragen">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Vorname</th>
+            <th>Nachname</th>
+            <th>E-Mail</th>
+            <th>Anreisedatum</th>
+            <th>Abreisedatum</th>
+            <th>Anzahl Erwachsene</th>
+            <th>Anzahl Kinder</th>
+            <th>Platzart</th>
+            <th>Status</th>
+            <th>Bestätigung senden</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model)
+        {
+            <tr>
+                <td>@r.ID</td>
+                <td>@r.Firstname</td>
+                <td>@r.Lastname</td>
+                <td>@r.EMail</td>
+                <td>@r.ArrivalDate</td>
+                <td>@r.DepartureDate</td>
+                <td>@r.NumberOfAdults</td>
+                <td>@r.NumberOfChildren</td>
+                <td>@r.TypeOfPlace</td>
+                @if (r.Status)
+                {
+                    <td>bearbeitet</td>
+                    <td></td>
+                    <td></td>
+                }
+                else
+                {
+                    <td>nicht bearbeitet</td>
+                    <td><a class="uk-button uk-button-default" type="button" href="/admin/SubmitReservationRequest?idReservation=@r.ID">Bestätigen</a></td>
+                    <td><a class="uk-button uk-button-default" type="button" href="/admin/DeleteReservationRequests?idReservation=@r.ID">Löschen</a></td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+}
+else
+{
+    <p>Es sind keine neuen Reservierungen vorhanden</p>
+}
+
+

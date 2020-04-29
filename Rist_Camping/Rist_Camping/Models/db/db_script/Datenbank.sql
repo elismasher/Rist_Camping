@@ -11,6 +11,7 @@ create table reservations(
     numberOfAdults INT not null,
     numberOfChildren INT not null,
     typeOfPlace INT not null,
+    statusReservierung bool not null,
     
     constraint id_PK primary key(id)
 )engine=InnoDB;
@@ -31,7 +32,11 @@ create table users(
 
 -- UPDATE users SET password = sha2("neues Passwort", 256) WHERE id = 1;
 
-INSERT INTO reservations VALUES(null, "Elias", "Rist", "test@test.at", now(), now(), 1, 0, 3);
+INSERT INTO reservations VALUES(null, "Elias", "Rist", "test@test.at", now(), now(), 1, 0, 3, false);
+INSERT INTO reservations VALUES(null, "aadf", "qwe", "qwer@qwer.at", now(), now(), 1, 5, 3, false);
+INSERT INTO reservations VALUES(null, "nxcxy", "wqerttz", "test@test.at", now(), now(), 3, 0, 3, false);
+
+
 INSERT INTO users VALUES(null, "Elias", "Rist", "elias.rist@nms2.at", 0, 1, "Elismasher", sha2("Klexi2408", 256));
 
 select * from reservations;

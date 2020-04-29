@@ -12,6 +12,7 @@ namespace Rist_Camping.Controllers
     public class AdminController : Controller
     {
         private IRepositoryUser rep;
+        private IRepositoryReservation rep2;
 
         public ActionResult Login()
         {
@@ -34,6 +35,18 @@ namespace Rist_Camping.Controllers
             }
             else
             {
+                Session["loggedInUser"] = userFromDB;
+
+                if(userFromDB.UserRole == UserRole.admin)
+                {
+                    Session["isAdmin"] = true;
+                }
+                else
+                {
+                    Session["isAdmin"] = false;
+                }
+                
+                
                 return RedirectToAction("index", "home");
             }
         }
@@ -84,13 +97,80 @@ namespace Rist_Camping.Controllers
 
         public ActionResult ReservationRequests()
         {
+            List<Reservation> reservations;
+            rep2 = new RepositoryReservation();
+
+            rep2.Open();
+            reservations = rep2.getAllReservations();
+            rep2.Close();
+
+            List<Reservation> newReservations = new List<Reservation>();
+
+            foreach(var r in reservations)
+            {
+                if(!r.Status)
+                {
+                    newReservations.Add(r);
+                }
+            }
+
+            return View(newReservations);
+        }
+
+        
+        public ActionResult SubmitReservationRequest(int idReservation)
+        {
+            if (Session["loggedInUser"] == null)
+            {
+                return RedirectToAction("login", "admin");
+            }
+
+            if (!Convert.ToBoolean(Session["isAdmin"]))
+            {
+                return RedirectToAction("index", "home");
+            }
+
+            rep2 = new RepositoryReservation();
+
+            rep2.Open();
+            rep2.UpdateReservationStatus(idReservation, true);
+            rep2.Close();
             return View();
+        }
+
+        public ActionResult DeleteReservationRequests(int idReservation)
+        {
+            if (Session["loggedInUser"] == null)
+            {
+                return RedirectToAction("login", "admin");
+            }
+
+            if (!Convert.ToBoolean(Session["isAdmin"]))
+            {
+                return RedirectToAction("index", "home");
+            }
+
+            rep2 = new RepositoryReservation();
+
+            rep2.Open();
+            rep2.DeleteReservation(idReservation);
+            rep2.Close();
+            return RedirectToAction("ReservationRequests", "admin");
         }
 
         public ActionResult RegisteredUsers()
         {
             return View();
         }
+
+        public ActionResult Logout()
+        {
+            Session["loggedInUser"] = null;
+            Session["isAdmin"] = false;
+            return RedirectToAction("index", "home");
+        }
+
+
 
 
         // Methoden:

@@ -20,9 +20,10 @@ namespace Rist_Camping.Models
         public int? NumberOfAdults { get; set; }
         public int? NumberOfChildren { get; set; }
         public Place TypeOfPlace { get; set; }
+        public bool Status { get; set; }
 
-        public Reservation(): this(0, "", "","", null, null, null, null, Place.nichtAngegeben) { }
-        public Reservation(int id, string firstname, string lastname, string email, DateTime? arrivalDate, DateTime? departureDate, int? numberOfAdults, int? numberOfChildren, Place typeOfPlace)
+        public Reservation(): this(0, "", "","", null, null, null, null, Place.nichtAngegeben, false) { }
+        public Reservation(int id, string firstname, string lastname, string email, DateTime? arrivalDate, DateTime? departureDate, int? numberOfAdults, int? numberOfChildren, Place typeOfPlace, bool status)
         {
             this.ID = id;
             this.Firstname = firstname;
@@ -33,6 +34,7 @@ namespace Rist_Camping.Models
             this.NumberOfAdults = numberOfAdults;
             this.NumberOfChildren = numberOfChildren;
             this.TypeOfPlace = typeOfPlace;
+            this.Status = status;
         }
     }
 }

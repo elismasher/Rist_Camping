@@ -95,6 +95,9 @@ a:hover:after {
     margin-bottom: 10px;
 }
 
+.reservierungsanfragen a:hover:after{
+    display: none;
+}
 /* Inhalt */
 .main {
     grid-column: 1 / 11;
