@@ -87,7 +87,7 @@ namespace Rist_Camping.Models.db
             List<Reservation> reservations = new List<Reservation>();
 
             DbCommand cmdSelect = this._connection.CreateCommand();
-            cmdSelect.CommandText = "SELECT * FROM reservations ORDER BY arrivalFate ASC";
+            cmdSelect.CommandText = "SELECT * FROM reservations ORDER BY arrivalDate ASC";
 
             using (DbDataReader reader = cmdSelect.ExecuteReader())
             {
