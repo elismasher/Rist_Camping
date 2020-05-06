@@ -1,0 +1,34 @@
+﻿@model Rist_Camping.Models.User
+
+@{
+    ViewBag.Title = "Benutzer Daten";
+}
+
+<h1>Deine Daten auf einem Blick</h1>
+
+@if (Model != null)
+{
+    <table class="uk-table reservierungsanfragen">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Vorname</th>
+                <th>Nachname</th>
+                <th>Geschlecht</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>@Model.ID</td>
+                    <td>@Model.Username</td>
+                    <td>@Model.Firstname</td>
+                    <td>@Model.Lastname</td>
+                    <td>@Model.Gender</td>
+                    <td>@Model.Email</td>
+                </tr>
+        </tbody>
+    </table>
+}
+

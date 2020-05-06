@@ -12,6 +12,7 @@ namespace Rist_Camping.Models.db
         bool Delete(int id);
         bool UpdateUserData(int id, User newUserData);
         User GetUser(int id);
+        List<User> GetAllUsers();
         User Login(UserLogin user);
     }
 }

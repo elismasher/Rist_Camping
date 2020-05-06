@@ -1,5 +1,44 @@
-﻿@{
+﻿@model List<Rist_Camping.Models.User>
+
+@{
     ViewBag.Title = "Registrierte Benutzer";
 }
 
 <h1>Registrierte Benutzer</h1>
+
+@if (Model != null)
+{
+    <table class="uk-table reservierungsanfragen">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Vorname</th>
+                <th>Nachname</th>
+                <th>Geschlecht</th>
+                <th>Email</th>
+                <th>UserRole</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var u in Model)
+            {
+                <tr>
+                    <td>@u.ID</td>
+                    <td>@u.Username</td>
+                    <td>@u.Firstname</td>
+                    <td>@u.Lastname</td>
+                    <td>@u.Gender</td>
+                    <td>@u.Email</td>
+                    <td>@u.UserRole</td>
+                    <td><a class="uk-button uk-button-default" type="button" href="/admin/DeleteRegisteredUser?idUser=@u.ID">Löschen</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Es sind keine User vorhanden</p>
+}

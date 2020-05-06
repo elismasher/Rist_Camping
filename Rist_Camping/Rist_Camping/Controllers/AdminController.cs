@@ -154,13 +154,70 @@ namespace Rist_Camping.Controllers
 
             rep2.Open();
             rep2.DeleteReservation(idReservation);
+
             rep2.Close();
             return RedirectToAction("ReservationRequests", "admin");
         }
 
         public ActionResult RegisteredUsers()
         {
-            return View();
+            List<User> users;
+            rep = new RepositoryUser();
+
+            rep.Open();
+            users = rep.GetAllUsers();
+            rep.Close();
+
+            List<User> registeredUsersOnly = new List<User>();
+
+            foreach (var u in users)
+            {
+                if (u.UserRole == UserRole.registeredUser)
+                {
+                    registeredUsersOnly.Add(u);
+                }
+            }
+
+            return View(registeredUsersOnly);
+        }
+
+        public ActionResult DeleteRegisteredUser(int idUser)
+        {
+            if (Session["loggedInUser"] == null)
+            {
+                return RedirectToAction("login", "admin");
+            }
+
+            if (!Convert.ToBoolean(Session["isAdmin"]))
+            {
+                return RedirectToAction("index", "home");
+            }
+
+            rep = new RepositoryUser();
+
+            rep.Open();
+            rep.Delete(idUser);
+            rep.Close();
+
+            return RedirectToAction("RegisteredUsers", "admin");
+        }
+
+        public ActionResult UserData()
+        {
+            if (Session["loggedInUser"] == null)
+            {
+                return RedirectToAction("login", "admin");
+            }
+
+            User userData = new User();
+
+            rep = new RepositoryUser();
+
+            rep.Open();
+            userData = rep.GetUser(((User)Session["loggedInUser"]).ID);
+            rep.Close();
+
+            return View(userData);
         }
 
         public ActionResult Logout()

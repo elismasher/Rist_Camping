@@ -13,7 +13,11 @@
 
     <li class="navEbene_1">@Html.ActionLink("Login", "login", "admin")</li>
     <li class="navEbene_1">@Html.ActionLink("Registrierung", "registration", "admin")</li>
-    <li class="navEbene_1">@Html.ActionLink("Logout", "logout", "admin")</li>
+    @if (Session["loggedInUser"] != null)
+    {
+        <li class="navEbene_1">@Html.ActionLink("Logout", "logout", "admin")</li>
+        <li class="navEbene_1">@Html.ActionLink("Benutzer Daten", "userdata", "admin")</li>
+    }
 
     @if (Convert.ToBoolean(Session["isAdmin"]))
     {

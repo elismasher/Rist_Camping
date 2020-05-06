@@ -117,6 +117,40 @@ namespace Rist_Camping.Models.db
             }
         }
 
+        public List<User> GetAllUsers()
+        {
+            List<User> allUsers = new List<User>();
+
+            DbCommand cmdGetUser = this._connection.CreateCommand();
+            cmdGetUser.CommandText = "SELECT * FROM users";
+
+            using (DbDataReader reader = cmdGetUser.ExecuteReader())
+            {
+                if (!reader.HasRows)
+                {
+                    return null;
+                }
+
+                while (reader.Read())
+                {
+                    allUsers.Add(
+                        new User
+                        {
+                            ID = Convert.ToInt32(reader["id"]),
+                            Firstname = Convert.ToString(reader["firstname"]),
+                            Lastname = Convert.ToString(reader["lastname"]),
+                            Email = Convert.ToString(reader["email"]),
+                            Gender = (Gender)Convert.ToInt32(reader["gender"]),
+                            UserRole = (UserRole)Convert.ToInt32(reader["userRole"]),
+                            Username = Convert.ToString(reader["username"]),
+                            Password = ""
+                        });
+                }
+
+            }
+            return allUsers;
+        }
+
         public User Login(UserLogin user)
         {
             DbCommand cmdLogin = this._connection.CreateCommand();
