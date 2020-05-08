@@ -161,6 +161,16 @@ namespace Rist_Camping.Controllers
 
         public ActionResult RegisteredUsers()
         {
+            if (Session["loggedInUser"] == null)
+            {
+                return RedirectToAction("login", "admin");
+            }
+
+            if (!Convert.ToBoolean(Session["isAdmin"]))
+            {
+                return RedirectToAction("index", "home");
+            }
+
             List<User> users;
             rep = new RepositoryUser();
 
@@ -196,10 +206,17 @@ namespace Rist_Camping.Controllers
             rep = new RepositoryUser();
 
             rep.Open();
-            rep.Delete(idUser);
-            rep.Close();
-
-            return RedirectToAction("RegisteredUsers", "admin");
+            if (rep.Delete(idUser))
+            {
+                rep.Close();
+                return RedirectToAction("RegisteredUsers", "admin");
+            }
+            else
+            {
+                rep.Close();
+                return View("Message", new Message("Löschen", "Löschen war nicht erfolgreich"));
+            }
+            
         }
 
         public ActionResult UserData()
