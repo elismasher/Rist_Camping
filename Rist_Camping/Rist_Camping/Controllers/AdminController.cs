@@ -237,6 +237,63 @@ namespace Rist_Camping.Controllers
             return View(userData);
         }
 
+        [HttpPost]
+        public ActionResult UserData(User user)
+        {
+            if (user == null)
+            {
+                return View(user);
+            }
+            
+
+            if (user.Password == null || user.Password == "")
+            {
+                CheckUserDataWithoutPassword(user);
+            }
+            else
+            {
+                CheckUserData(user);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(user);
+            }
+            else
+            {
+                user.UserRole = ((User)Session["loggedInUser"]).UserRole;
+
+                rep = new RepositoryUser();
+
+                rep.Open();
+                if(user.Password == null || user.Password == "")
+                {
+                    if (rep.UpdateUserDataWithoutPassword(((User)Session["loggedInUser"]).ID, user))
+                    {
+                        rep.Close();
+                        return View(user);
+                    }
+                    else
+                    {
+                        rep.Close();
+                        return View(user);
+                    }
+                }
+                else {
+                    if (rep.UpdateUserData(user.ID, user))
+                    {
+                        rep.Close();
+                        return View(user);
+                    }
+                    else
+                    {
+                        rep.Close();
+                        return View(user);
+                    }
+                }
+            }
+        }
+
         public ActionResult Logout()
         {
             Session["loggedInUser"] = null;
@@ -248,6 +305,42 @@ namespace Rist_Camping.Controllers
 
 
         // Methoden:
+        private void CheckUserDataWithoutPassword(User user)
+        {
+            if (user == null)
+            {
+                return;
+            }
+
+            if (string.IsNullOrEmpty(user.Firstname.Trim()))
+            {
+                ModelState.AddModelError("Firstname", "Vorname muss eingetragen werden");
+            }
+            if (string.IsNullOrEmpty(user.Lastname.Trim()))
+            {
+                ModelState.AddModelError("Lastname", "Nachname muss eingetragen werden");
+            }
+            if (string.IsNullOrEmpty(user.Username.Trim()))
+            {
+                ModelState.AddModelError("Username", "Ein Username muss angegeben werden");
+            }
+
+            if (user.Password != user.PasswordConfirm)
+            {
+                ModelState.AddModelError("PasswordConfirm", "Die Passwörter stimmen nicht überein!");
+            }
+
+            if (!EmailContainsAddSign(user.Email, 1))
+            {
+                ModelState.AddModelError("Email", "Email muss ein @ Zeichen enthalten.");
+            }
+
+            if (!EmailContainsAddSign(user.Email, 1))
+            {
+                ModelState.AddModelError("Email", "Email muss  einen . enthalten.");
+            }
+
+        }
         private void CheckUserData(User user)
         {
             if (user == null)

@@ -8,6 +8,7 @@
 
 @if (Model != null)
 {
+<form action="/Admin/UserData" method="post">
     <table class="uk-table reservierungsanfragen">
         <thead>
             <tr>
@@ -17,18 +18,87 @@
                 <th>Nachname</th>
                 <th>Geschlecht</th>
                 <th>Email</th>
+                <th>neues Passwort</th>
+                <th>neues Passwort wiederholen</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-                <tr>
-                    <td>@Model.ID</td>
-                    <td>@Model.Username</td>
-                    <td>@Model.Firstname</td>
-                    <td>@Model.Lastname</td>
-                    <td>@Model.Gender</td>
-                    <td>@Model.Email</td>
-                </tr>
+            <tr>
+                <td>
+                    <input class="uk-input" id="ID" name="ID" type="number" readonly="readonly" value="@Model.ID">
+                </td>
+                <td>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" id="Username" name="Username" type="text" value="@Model.Username">
+                    </div>
+                    <span class="errorForm">
+                        @Html.ValidationMessageFor(u => u.Username)
+                    </span>
+                </td>
+                <td>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" id="Firstname" name="Firstname" type="text" value="@Model.Firstname">
+                    </div>
+                    <span class="errorForm">
+                        @Html.ValidationMessageFor(u => u.Firstname)
+                    </span>
+                </td>
+                <td>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" id="Lastname" name="Lastname" type="text" value="@Model.Lastname">
+                    </div>
+                    <span class="errorForm">
+                        @Html.ValidationMessageFor(u => u.Lastname)
+                    </span>
+                </td>
+                <td>
+                    <div class="uk-form-controls uk-form-controls-text">
+                        @if (Model.Gender == Rist_Camping.Models.Gender.male)
+                        {
+                            <label class="labelRadio"><input id="Gender" name="Gender" class="uk-radio" value="0" type="radio" checked> Männlich</label><br />
+                            <label class="labelRadio"><input id="Gender" name="Gender" class="uk-radio" value="1" type="radio"> Weiblich</label>
+                        }
+                        else
+                        {
+                            <label class="labelRadio"><input id="Gender" name="Gender" class="uk-radio" value="0" type="radio"> Männlich</label><br />
+                            <label class="labelRadio"><input id="Gender" name="Gender" class="uk-radio" value="1" type="radio" checked> Weiblich</label>
+                        }
+                    </div>
+                    <span class="errorForm">
+                        @Html.ValidationMessageFor(u => u.Gender)
+                    </span>
+                </td>
+                <td>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" id="Email" name="Email" type="email" value="@Model.Email">
+                    </div>
+                    <span class="errorForm">
+                        @Html.ValidationMessageFor(u => u.Email)
+                    </span>
+                </td>
+                <td>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" id="Password" name="Password" type="password" minlength="8" placeholder="neues Passwort eingeben ...">
+                    </div>
+                    <span class="errorForm">
+                        @Html.ValidationMessageFor(u => u.Password)
+                    </span>
+                </td>
+                <td>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" id="PasswordConfirm" name="PasswordConfirm" type="password" placeholder="Passwort wiederholen ...">
+                    </div>
+                    <span class="errorForm">
+                        @Html.ValidationMessageFor(u => u.PasswordConfirm)
+                    </span>
+                </td>
+                <td>
+                    <input class="uk-button uk-button-primary" type="submit" value="Bearbeiten" />
+                </td>
+            </tr>
         </tbody>
     </table>
+</form>
 }
 

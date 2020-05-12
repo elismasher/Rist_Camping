@@ -213,7 +213,7 @@ namespace Rist_Camping.Models.db
 
             DbParameter paramEmail = cmdUpdate.CreateParameter();
             paramEmail.ParameterName = "email";
-            paramEmail.Value = newUserData.Lastname;
+            paramEmail.Value = newUserData.Email;
             paramEmail.DbType = DbType.String;
 
             DbParameter paramGender = cmdUpdate.CreateParameter();
@@ -235,7 +235,8 @@ namespace Rist_Camping.Models.db
             paramPassword.ParameterName = "password";
             paramPassword.Value = newUserData.Password;
             paramPassword.DbType = DbType.String;
-
+            
+            cmdUpdate.Parameters.Add(paramId);
             cmdUpdate.Parameters.Add(paramFirstname);
             cmdUpdate.Parameters.Add(paramLastname);
             cmdUpdate.Parameters.Add(paramEmail);
@@ -243,6 +244,57 @@ namespace Rist_Camping.Models.db
             cmdUpdate.Parameters.Add(paramRole);
             cmdUpdate.Parameters.Add(paramUsername);
             cmdUpdate.Parameters.Add(paramPassword);
+
+            return cmdUpdate.ExecuteNonQuery() == 1;
+        }
+
+        public bool UpdateUserDataWithoutPassword(int id, User newUserData)
+        {
+            DbCommand cmdUpdate = this._connection.CreateCommand();
+            cmdUpdate.CommandText = "UPDATE users SET firstname=@firstname, lastname=@lastname, email=@email, gender=@gender, userRole=@userRole, username=@username WHERE id=@uId";
+
+            DbParameter paramId = cmdUpdate.CreateParameter();
+            paramId.ParameterName = "uId";
+            paramId.Value = id;
+            paramId.DbType = DbType.Int32;
+
+            DbParameter paramFirstname = cmdUpdate.CreateParameter();
+            paramFirstname.ParameterName = "firstname";
+            paramFirstname.Value = newUserData.Firstname;
+            paramFirstname.DbType = DbType.String;
+
+            DbParameter paramLastname = cmdUpdate.CreateParameter();
+            paramLastname.ParameterName = "lastname";
+            paramLastname.Value = newUserData.Lastname;
+            paramLastname.DbType = DbType.String;
+
+            DbParameter paramEmail = cmdUpdate.CreateParameter();
+            paramEmail.ParameterName = "email";
+            paramEmail.Value = newUserData.Email;
+            paramEmail.DbType = DbType.String;
+
+            DbParameter paramGender = cmdUpdate.CreateParameter();
+            paramGender.ParameterName = "gender";
+            paramGender.Value = newUserData.Gender;
+            paramGender.DbType = DbType.Int32;
+
+            DbParameter paramRole = cmdUpdate.CreateParameter();
+            paramRole.ParameterName = "userRole";
+            paramRole.Value = newUserData.UserRole;
+            paramRole.DbType = DbType.Int32;
+
+            DbParameter paramUsername = cmdUpdate.CreateParameter();
+            paramUsername.ParameterName = "username";
+            paramUsername.Value = newUserData.Username;
+            paramUsername.DbType = DbType.String;
+
+            cmdUpdate.Parameters.Add(paramId);
+            cmdUpdate.Parameters.Add(paramFirstname);
+            cmdUpdate.Parameters.Add(paramLastname);
+            cmdUpdate.Parameters.Add(paramEmail);
+            cmdUpdate.Parameters.Add(paramGender);
+            cmdUpdate.Parameters.Add(paramRole);
+            cmdUpdate.Parameters.Add(paramUsername);
 
             return cmdUpdate.ExecuteNonQuery() == 1;
         }
